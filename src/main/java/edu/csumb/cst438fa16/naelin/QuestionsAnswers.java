@@ -1,3 +1,9 @@
+/*
+ * Author: Naelin Aquino
+ * CST438: Software Engineering
+ * Date: Sep 3 2016
+ */
+
 package edu.csumb.cst438fa16.naelin;
 
 import java.util.Map;
