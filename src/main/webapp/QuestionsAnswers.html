@@ -1,0 +1,44 @@
+<!doctype html>
+<head>
+<title>Hello</title>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+</head>
+<body>
+
+<div>
+  Question: <span id="randomQuestion"></span>
+  <input id="answer" type="text" autofocus />
+  <button onclick="answer()">Submit</button>
+</div>
+
+<div id="message"></div>
+
+<script>
+// fills in <span id="today">...</span> with today's day of the week
+// returned from /rest/today server endpoint
+function randomQuestion() {
+  $.get("/rest/randomquestion", function(thequestion) {
+      $("#answer").val("");
+      $("#randomQuestion").text(thequestion);
+    });
+};
+// fills in <div id="greeting">...</div> with the greeting
+// returned from calling the /rest/hello?name=... server endpoint
+// with the name from the input text box
+function answer() {
+  var thequestion = $("#randomQuestion").text();
+  var theanswer = $("#answer").val();
+  $.get("/rest/testanswer", { question: thequestion, answer: theanswer }, function(themessage) {
+      $("#message").text(themessage);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+       // displays server error message, e.g. if called with empty name
+       $("#message").text(textStatus + ": " + errorThrown);
+     });
+  $(randomQuestion);
+};
+$(randomQuestion); // execute today() after DOM is ready, see https://api.jquery.com/ready/
+</script>
+
+</body>
+</html>

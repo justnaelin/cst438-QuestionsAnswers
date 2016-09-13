@@ -15,7 +15,7 @@ public class QuestionsAnswersTest extends TestCase {
 	public void testQuestionAndAnswer() {
 		QuestionsAnswers qa = new QuestionsAnswers();
 		qa.put("What is Pooh's full name?", "Winnie the Pooh");
-		assertEquals("Winnie the Pooh", QuestionsAnswers.questions.get("What is Pooh's full name?"));
+		assertEquals("Winnie the Pooh", qa.getQuestions().get("What is Pooh's full name?"));
 	}
 	
 	@Test
@@ -28,11 +28,8 @@ public class QuestionsAnswersTest extends TestCase {
 	@Test
 	public void testRandomQuestion() {
 		QuestionsAnswers qa = new QuestionsAnswers();
-		qa.put("What is Pooh's full name?", "Winnie the Pooh");
 		qa.put("What is my last name?", "Aquino");
-
 		assertNotNull(qa.getRandomQuestion());
-
 	}
 
 }
